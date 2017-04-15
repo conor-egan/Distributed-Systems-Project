@@ -6,16 +6,32 @@
         <title>Log In</title>
     </h:head>
     <h:body>
-        <h2>Log In: </h2>
-        <h:form>
-            <h:inputText id="name" value="#{enterLogin.name}"/>
-            <br>
-            <h:inputText id="password" value="#{enterLogin.password}"/>
-            </br>
-            <br>
-            <h:commandButton action="#{enterLogin.login()}"
-                                 value="Login" />
-            </br>
+        <h:form id="loginForm">
+            <table frame="box">
+                <tr>
+                    <th>Login Page</th>
+                </tr>
+                <tr>
+                    <td><h:outputText value="Enter Your Name : " /></td>
+                    <td><h:inputText id="name" value="#{enterLogin.name}"
+                            required="true" requiredMessage="Name field must not be empty" />
+                    </td>
+                    <td><h:message for="name" style="color:red" /></td>
+                </tr>
+                <tr>
+                    <td><h:outputText value="Enter password :" /></td>
+                    <td><h:inputSecret id="password" value="#{enterLogin.password}"
+                            required="true"
+                            requiredMessage="Password field must not be empty" /></td>
+                    <td><h:message for="password" style="color:red" /></td>
+                </tr>
+                <tr>
+                    <td><h:commandButton value="Sign In" action="#{enterLogin.login}" /></td>
+                </tr>
+                <tr>
+                    <td>Don't have an account? <h:link value = "Sign up here!" outcome = "register"/></td>
+                </tr>
+            </table>
         </h:form>
     </h:body>
 </html>

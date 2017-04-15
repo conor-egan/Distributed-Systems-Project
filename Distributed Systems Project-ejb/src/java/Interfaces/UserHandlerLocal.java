@@ -22,4 +22,6 @@ public interface UserHandlerLocal {
      * @return
      */
     public Customer login(String username, String password);
+    public void addUser(Customer newuser);
+    
 }

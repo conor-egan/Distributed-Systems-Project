@@ -45,6 +45,13 @@ public class UserHandler implements UserHandlerLocal {
             return null;
         }
     }
+    
+    @Override
+    public void addUser(Customer newuser){
+           
+        em.persist(newuser);
+    
+    }
 
     public void persist(Object object) {
         em.persist(object);

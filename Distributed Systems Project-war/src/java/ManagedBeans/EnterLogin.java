@@ -58,6 +58,7 @@ public class EnterLogin {
      * Creates a new instance of EnterLogin
      */
     public EnterLogin() {
+        
     }
     
 }
