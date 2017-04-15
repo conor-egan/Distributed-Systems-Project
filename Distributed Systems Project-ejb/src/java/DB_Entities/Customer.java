@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -30,14 +32,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Customer.findByCustomerName", query = "SELECT c FROM Customer c WHERE c.customerName = :customerName")
     , @NamedQuery(name = "Customer.findByCustomerEmail", query = "SELECT c FROM Customer c WHERE c.customerEmail = :customerEmail")
     , @NamedQuery(name = "Customer.findByCustomerAddress", query = "SELECT c FROM Customer c WHERE c.customerAddress = :customerAddress")
-    , @NamedQuery(name = "Customer.findByCustomerDescription", query = "SELECT c FROM Customer c WHERE c.customerDescription = :customerDescription")
-    , @NamedQuery(name = "Customer.findByCustomerPassword", query = "SELECT c FROM Customer c WHERE c.customerPassword = :customerPassword")})
+    , @NamedQuery(name = "Customer.findByCustomerPassword", query = "SELECT c FROM Customer c WHERE c.customerPassword = :customerPassword")
+    , @NamedQuery(name = "Customer.findByCustomerDescription", query = "SELECT c FROM Customer c WHERE c.customerDescription = :customerDescription")})
 public class Customer implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "CUSTOMER_ID")
     private Integer customerId;
     @Basic(optional = false)
@@ -47,22 +49,22 @@ public class Customer implements Serializable {
     private String customerName;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 150)
+    @Size(min = 1, max = 200)
     @Column(name = "CUSTOMER_EMAIL")
     private String customerEmail;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 250)
+    @Size(min = 1, max = 500)
     @Column(name = "CUSTOMER_ADDRESS")
     private String customerAddress;
-    @Size(max = 500)
-    @Column(name = "CUSTOMER_DESCRIPTION")
-    private String customerDescription;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 200)
     @Column(name = "CUSTOMER_PASSWORD")
     private String customerPassword;
+    @Size(max = 500)
+    @Column(name = "CUSTOMER_DESCRIPTION")
+    private String customerDescription;
 
     public Customer() {
     }
@@ -111,20 +113,20 @@ public class Customer implements Serializable {
         this.customerAddress = customerAddress;
     }
 
-    public String getCustomerDescription() {
-        return customerDescription;
-    }
-
-    public void setCustomerDescription(String customerDescription) {
-        this.customerDescription = customerDescription;
-    }
-
     public String getCustomerPassword() {
         return customerPassword;
     }
 
     public void setCustomerPassword(String customerPassword) {
         this.customerPassword = customerPassword;
+    }
+
+    public String getCustomerDescription() {
+        return customerDescription;
+    }
+
+    public void setCustomerDescription(String customerDescription) {
+        this.customerDescription = customerDescription;
     }
 
     @Override
