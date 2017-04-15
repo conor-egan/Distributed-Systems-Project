@@ -27,8 +27,8 @@ public class UserHandler implements UserHandlerLocal {
     @Override
     public Customer login(String username, String password) {
         Customer user;
-        Query query = em.createNamedQuery("Customer.findByUsername")
-                .setParameter("username", username);
+        Query query = em.createNamedQuery("Customer.findByCustomerName")
+                .setParameter("customerName", username);
         try {
             user = (Customer) query.getSingleResult();
         } catch (NoResultException nre) {
