@@ -6,7 +6,9 @@
 package EJBs;
 
 import DB_Entities.Customer;
+import DB_Entities.Product;
 import Interfaces.UserHandlerLocal;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -57,4 +59,12 @@ public class UserHandler implements UserHandlerLocal {
         em.persist(object);
     }
     
+     @Override
+    public List<Customer> searchName(String name) {
+        
+        Query query = em.createNamedQuery("Customer.findByCustomerName")
+                .setParameter("customerName", name);
+        
+        return query.getResultList();
+    }
 }

@@ -6,6 +6,7 @@
 package Interfaces;
 
 import DB_Entities.Customer;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -23,5 +24,6 @@ public interface UserHandlerLocal {
      */
     public Customer login(String username, String password);
     public void addUser(Customer newuser);
+    public List<Customer> searchName(String name);
     
 }
