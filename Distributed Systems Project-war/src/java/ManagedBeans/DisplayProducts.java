@@ -31,7 +31,17 @@ public class DisplayProducts implements Serializable{
     SessionHandler sessionHandler;
     
     private String name;
+    private int productId;
 
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    
     
     
     public String getName() {
@@ -46,6 +56,16 @@ public class DisplayProducts implements Serializable{
     public List<Product> searchName() {
       
         return productHandler.searchName(name);
+    }
+    
+    public List<Product> searchId() {
+      
+        return productHandler.searchId(productId);
+    }
+    
+    public List<Product> showAllProducts(){
+    
+        return productHandler.showAllProducts();
     }
     /**
      * Creates a new instance of DisplayProducts

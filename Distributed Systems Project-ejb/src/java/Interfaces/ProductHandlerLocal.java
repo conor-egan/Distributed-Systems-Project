@@ -16,6 +16,9 @@ import javax.ejb.Local;
 @Local
 public interface ProductHandlerLocal {
     
-     public List<Product> searchName(String name);
+    public List<Product> searchName(String name);
+    public List<Product> searchId(int productId);
+
+    public List<Product> showAllProducts();
     
 }

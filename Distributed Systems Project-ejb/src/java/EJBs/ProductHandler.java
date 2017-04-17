@@ -30,12 +30,32 @@ public class ProductHandler implements ProductHandlerLocal {
      */
     @Override
     public List<Product> searchName(String name) {
-        // create named query and set parameter
-        Query query = em.createNamedQuery("Product.findByProductName")
-                .setParameter("productName", "%" + name + "%");
-        // return query result
+        
+        
+       Query query = em.createNamedQuery("Product.findByProductName")
+                .setParameter("productName", name);
+        
         return query.getResultList();
     }
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    
+    @Override
+    public List<Product> searchId(int productId) {
+        
+        
+       Query query = em.createNamedQuery("Product.findByProductId")
+                .setParameter("productId", productId);
+        
+        return query.getResultList();
+    }
+    
+    @Override
+    public List<Product> showAllProducts() {
+        
+        
+       Query query = em.createNamedQuery("Product.findAll");
+        
+        return query.getResultList();
+    }
+   
+    
 }
