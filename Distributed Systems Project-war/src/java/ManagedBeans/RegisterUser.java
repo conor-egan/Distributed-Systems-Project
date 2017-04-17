@@ -7,12 +7,11 @@ package ManagedBeans;
 
 import DB_Entities.Customer;
 import Interfaces.UserHandlerLocal;
-import java.util.Random;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.jms.JMSException;
+
 
 /**
  *
