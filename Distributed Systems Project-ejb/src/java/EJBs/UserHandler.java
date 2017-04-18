@@ -6,7 +6,6 @@
 package EJBs;
 
 import DB_Entities.Customer;
-import DB_Entities.Product;
 import Interfaces.UserHandlerLocal;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -66,5 +65,9 @@ public class UserHandler implements UserHandlerLocal {
                 .setParameter("customerName", name);
         
         return query.getResultList();
+    }
+    
+    public void replaceUser(Customer user) {
+        em.merge(user);
     }
 }

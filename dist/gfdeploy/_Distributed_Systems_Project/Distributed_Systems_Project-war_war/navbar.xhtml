@@ -1,0 +1,15 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <div>
+        <nav>
+            <h:form>
+                <h:commandButton value="Products" action="all_products" />
+                <h:commandButton value="Your Profile" action="customer_home" />
+                <h:commandButton value="Login" action="login" />
+                <!-- <h:commandLink action="#{sessionManager.logout()}" value="Logout" /> -->
+            </h:form>
+        </nav>
+    </div>
+</ui:composition>

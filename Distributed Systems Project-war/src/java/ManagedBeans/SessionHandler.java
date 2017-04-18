@@ -26,6 +26,10 @@ public class SessionHandler implements Serializable {
 
     @EJB
     UserHandlerLocal userHandler;
+
+    public Customer getUser() {
+        return user;
+    }
     
     private Customer user;
     

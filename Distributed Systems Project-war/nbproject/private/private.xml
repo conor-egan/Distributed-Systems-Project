@@ -3,8 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Conor/Documents/NetBeansProjects/Distributed%20Systems%20Project/Distributed%20Systems%20Project-war/web/navbar.xhtml</file>
+            <file>file:/C:/Users/Conor/Documents/NetBeansProjects/Distributed%20Systems%20Project/Distributed%20Systems%20Project-war/web/login.xhtml</file>
+            <file>file:/C:/Users/Conor/Documents/NetBeansProjects/Distributed%20Systems%20Project/Distributed%20Systems%20Project-war/web/user_search_results.xhtml</file>
             <file>file:/C:/Users/Conor/Documents/NetBeansProjects/Distributed%20Systems%20Project/Distributed%20Systems%20Project-war/src/java/ManagedBeans/SessionHandler.java</file>
-            <file>file:/C:/Users/Conor/Documents/NetBeansProjects/Distributed%20Systems%20Project/Distributed%20Systems%20Project-war/src/conf/persistence.xml</file>
+            <file>file:/C:/Users/Conor/Documents/NetBeansProjects/Distributed%20Systems%20Project/Distributed%20Systems%20Project-war/web/customer_home.xhtml</file>
+            <file>file:/C:/Users/Conor/Documents/NetBeansProjects/Distributed%20Systems%20Project/Distributed%20Systems%20Project-war/web/all_products.xhtml</file>
+            <file>file:/C:/Users/Conor/Documents/NetBeansProjects/Distributed%20Systems%20Project/Distributed%20Systems%20Project-war/src/java/ManagedBeans/DisplayUsers.java</file>
+            <file>file:/C:/Users/Conor/Documents/NetBeansProjects/Distributed%20Systems%20Project/Distributed%20Systems%20Project-war/web/id_search_results.xhtml</file>
         </group>
     </open-files>
 </project-private>
