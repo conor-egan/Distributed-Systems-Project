@@ -44,6 +44,26 @@
             </table>
         </h:form>
     </f:view>
+        
+        
+        <f:view>
+            <h:form>
+                <table>
+                    <tr>
+                        <td>Quantity to add to cart:</td>
+                        <td><h:inputText value="#{cartSession.quantity}"
+                             required="true"
+                             label="quantity"
+                             validatorMessage="Quantity must be between 0 and #{individualProduct.stock}">
+                            <f:validateLongRange minimum="0" maximum="#{individualProduct.stock}" />
+                            </h:inputText></td>
+                        <td><h:commandButton 
+                    value="Add To Cart"
+                    action="#{cartSession.addToCart(individualProduct.product)}"/></td>
+                    </tr>
+                </table>
+            </h:form>
+        </f:view>
     </h:body>
 </html>
 

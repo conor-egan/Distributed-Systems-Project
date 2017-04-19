@@ -67,6 +67,7 @@ public class UserHandler implements UserHandlerLocal {
         return query.getResultList();
     }
     
+    @Override
     public void replaceUser(Customer user) {
         em.merge(user);
     }

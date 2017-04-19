@@ -49,5 +49,9 @@ public class SessionHandler implements Serializable {
         }
     }
     
+     public boolean checkLogin() {
+        return user != null;
+    }
+    
    
 }
