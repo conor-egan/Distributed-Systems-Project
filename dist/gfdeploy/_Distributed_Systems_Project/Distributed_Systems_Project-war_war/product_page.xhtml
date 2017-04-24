@@ -41,6 +41,12 @@
                         value="#{individualProduct.price}"
                         escape="true"/></td>
                 </tr>
+                 <tr>
+                    <td><h3><h:outputText value="Quantity in Stock:" /></h3></td>
+                    <td><h:outputText style="font-weight:normal;" 
+                        value="#{individualProduct.stock}"
+                        escape="true"/></td>
+                </tr>
             </table>
         </h:form>
     </f:view>
@@ -54,7 +60,7 @@
                         <td><h:inputText value="#{cartSession.quantity}"
                              required="true"
                              label="quantity"
-                             validatorMessage="Quantity must be between 0 and #{individualProduct.stock}">
+                             validatorMessage="Insufficent Stock: Quantity must be between 0 and #{individualProduct.stock}">
                             <f:validateLongRange minimum="0" maximum="#{individualProduct.stock}" />
                             </h:inputText></td>
                         <td><h:commandButton 

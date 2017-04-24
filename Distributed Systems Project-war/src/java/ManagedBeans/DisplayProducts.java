@@ -8,7 +8,6 @@ package ManagedBeans;
 import DB_Entities.Product;
 import Interfaces.ProductHandlerLocal;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;

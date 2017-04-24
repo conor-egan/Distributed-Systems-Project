@@ -27,7 +27,7 @@ public class CartSession implements Serializable {
     SessionHandler sessionHandler;
     
     private int quantity;
-   private List<Cart> items = new ArrayList<>();
+    private List<Cart> items = new ArrayList<>();
 
     public int getQuantity() {
         return quantity;
@@ -44,7 +44,7 @@ public class CartSession implements Serializable {
         if (!(sessionHandler.checkLogin())) {
             return "login";
         }
-        /*
+       
         boolean exists = false;
         for (Cart item : items) {
             if (Objects.equals(item.getProductId(), product.getProductId())) {
@@ -55,9 +55,40 @@ public class CartSession implements Serializable {
         }
         if (!exists) {
             items.add(new Cart(product, quantity));
-        }*/
+        }
         
        return "cart_page";
     }
 
+    public String clearItem(int productId){
+    
+    if (!(sessionHandler.checkLogin())) {
+            return "login";
+        }
+       
+       
+        for (Cart item : items) {
+            if (item.getProductId() == productId) {
+                
+                items.remove(item);
+                break;
+            }
+        }
+        
+        
+       return "cart_page";
+    
+    
+    }
+    public List<Cart> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Cart> items) {
+        this.items = items;
+    }
+
+    public void clearCart() {
+        items.clear();
+    }
 }

@@ -3,13 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Conor/Documents/NetBeansProjects/Distributed%20Systems%20Project/Distributed%20Systems%20Project-war/web/navbar.xhtml</file>
             <file>file:/C:/Users/Conor/Documents/NetBeansProjects/Distributed%20Systems%20Project/Distributed%20Systems%20Project-war/src/java/ManagedBeans/CartSession.java</file>
-            <file>file:/C:/Users/Conor/Documents/NetBeansProjects/Distributed%20Systems%20Project/Distributed%20Systems%20Project-war/web/login.xhtml</file>
-            <file>file:/C:/Users/Conor/Documents/NetBeansProjects/Distributed%20Systems%20Project/Distributed%20Systems%20Project-war/web/register.xhtml</file>
-            <file>file:/C:/Users/Conor/Documents/NetBeansProjects/Distributed%20Systems%20Project/Distributed%20Systems%20Project-war/web/product_page.xhtml</file>
-            <file>file:/C:/Users/Conor/Documents/NetBeansProjects/Distributed%20Systems%20Project/Distributed%20Systems%20Project-war/src/java/ManagedBeans/EnterLogin.java</file>
+            <file>file:/C:/Users/Conor/Documents/NetBeansProjects/Distributed%20Systems%20Project/Distributed%20Systems%20Project-war/src/java/ManagedBeans/DisplayProducts.java</file>
             <file>file:/C:/Users/Conor/Documents/NetBeansProjects/Distributed%20Systems%20Project/Distributed%20Systems%20Project-war/src/java/ManagedBeans/Cart.java</file>
             <file>file:/C:/Users/Conor/Documents/NetBeansProjects/Distributed%20Systems%20Project/Distributed%20Systems%20Project-war/web/cart_page.xhtml</file>
+            <file>file:/C:/Users/Conor/Documents/NetBeansProjects/Distributed%20Systems%20Project/Distributed%20Systems%20Project-war/web/all_products.xhtml</file>
         </group>
     </open-files>
 </project-private>
