@@ -6,7 +6,9 @@
 package ManagedBeans;
 
 import DB_Entities.Product;
+
 import java.io.Serializable;
+
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
@@ -17,8 +19,9 @@ import javax.inject.Named;
 @Named (value = "individualProduct")
 @SessionScoped
 public class IndividualProduct implements Serializable {
-
-    private Product product;
+    
+   private Product product;
+    
 
     public Product getProduct() {
         return product;
@@ -57,5 +60,7 @@ public class IndividualProduct implements Serializable {
     }
 
 
-
+    
+   
+    
 }

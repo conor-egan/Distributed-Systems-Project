@@ -10,7 +10,7 @@
         
         <h3>
             <h:outputText escape="true" 
-                value="User Name: #{displayUsers.name} Search Results"/>
+                value="'#{displayUsers.name}' Search Results"/>
         </h3>
         <h:dataTable value="#{displayUsers.searchName()}" var="user" border="1" cellpadding="10">
             <h:column>
@@ -20,8 +20,8 @@
             <h:column>
                 <f:facet name="header">Name</f:facet>
                 <h:form>
-                    <h:commandLink value = "#{user.customerName}"
-                        action="#{currentUser.setProd(user)}"/>
+                    <h:outputText value = "#{user.customerName}"
+                        escape = "true"/>
                 </h:form>
             </h:column>
             <h:column>

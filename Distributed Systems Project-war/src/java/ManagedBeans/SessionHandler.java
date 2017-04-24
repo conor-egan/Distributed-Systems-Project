@@ -5,16 +5,16 @@
  */
 package ManagedBeans;
 
+import DB_Entities.Administrator;
 import DB_Entities.Customer;
+import Interfaces.AdminHandlerLocal;
 import Interfaces.UserHandlerLocal;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.ejb.*;
 import javax.inject.Inject;
-import javax.jms.JMSException;
+
 
 /**
  *
@@ -26,12 +26,25 @@ public class SessionHandler implements Serializable {
 
     @EJB
     UserHandlerLocal userHandler;
+    
+    @EJB
+    AdminHandlerLocal adminHandler;
+    
+    @Inject
+    CartSession cartSession;
+    
+    private Customer user;
+    private Administrator admin;
 
     public Customer getUser() {
         return user;
     }
     
-    private Customer user;
+    public Administrator getAdmin(){
+        return admin;
+    }
+    
+   
     
     /**
      * Log into the application
@@ -49,8 +62,25 @@ public class SessionHandler implements Serializable {
         }
     }
     
+    public Administrator adminLogin(String username, String password) {
+        admin = adminHandler.login(username, password);
+        if (admin != null) {
+            return admin;
+        } else {
+            return null;
+        }
+    }
+    
      public boolean checkLogin() {
         return user != null;
+    }
+     
+    public String logout() {
+        user = null;
+        cartSession.clearCart();
+        admin = null;
+        return "login";
+        
     }
     
    

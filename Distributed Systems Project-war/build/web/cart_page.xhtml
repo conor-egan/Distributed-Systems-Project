@@ -23,9 +23,9 @@
                     <h:outputText value="#{item.price}" escape="true"/>
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Quantity Available</f:facet>
+                    <f:facet name="header">Description</f:facet>
                     <h:outputText escape="true"
-                        value="#{item.stock}"/>
+                                  value="#{item.description}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Quantity in Cart</f:facet>
@@ -38,10 +38,8 @@
 
                 </h:column>
             </h:dataTable>
-            <h:panelGrid columns="3">
-                <h:commandButton action="cart_page"
-                                     value="Update Cart"
-                                     />
+            <h:panelGrid columns="2">
+                
                 <h:commandButton value="Cancel Order"
                                  action="#{cartSession.clearCart()}"/>
                 <h:commandButton action="#{cartSession.checkout()}"

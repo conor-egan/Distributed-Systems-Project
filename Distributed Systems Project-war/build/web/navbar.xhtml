@@ -8,8 +8,7 @@
                 <h:commandButton value="Products" action="all_products" />
                 <h:commandButton value="Your Profile" action="customer_home" />
                 <h:commandButton value="Shopping Cart" action="cart_page" />
-                <h:commandButton value="Login" action="login" />
-                <!-- <h:commandLink action="#{sessionManager.logout()}" value="Logout" /> -->
+                <h:commandButton value="Logout" action="#{sessionHandler.logout()}" />
             </h:form>
         </nav>
     </div>

@@ -56,6 +56,17 @@ public class ProductHandler implements ProductHandlerLocal {
         
         return query.getResultList();
     }
+    
+    @Override
+    public void addProduct(Product newproduct){
+           
+        em.persist(newproduct);
+    
+    }
+    
+    public void persist(Object object) {
+        em.persist(object);
+    }
    
     
 }

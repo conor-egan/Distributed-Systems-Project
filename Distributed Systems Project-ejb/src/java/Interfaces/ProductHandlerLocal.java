@@ -20,5 +20,7 @@ public interface ProductHandlerLocal {
     public List<Product> searchId(int productId);
 
     public List<Product> showAllProducts();
+
+    public void addProduct(Product newproduct);
     
 }

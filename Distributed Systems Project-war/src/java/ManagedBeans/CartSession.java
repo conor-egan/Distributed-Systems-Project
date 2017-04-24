@@ -65,8 +65,7 @@ public class CartSession implements Serializable {
     if (!(sessionHandler.checkLogin())) {
             return "login";
         }
-       
-       
+            
         for (Cart item : items) {
             if (item.getProductId() == productId) {
                 
@@ -74,12 +73,9 @@ public class CartSession implements Serializable {
                 break;
             }
         }
-        
-        
-       return "cart_page";
-    
-    
+        return "cart_page";
     }
+    
     public List<Cart> getItems() {
         return items;
     }

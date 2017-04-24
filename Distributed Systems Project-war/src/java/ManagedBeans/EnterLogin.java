@@ -44,7 +44,7 @@ public class EnterLogin {
         this.password = password;
     }
     
-   public String login() {
+    public String login() {
         Customer user = sessionHandler.login(name, password);
         if (user != null) {
             return "customer_home";
