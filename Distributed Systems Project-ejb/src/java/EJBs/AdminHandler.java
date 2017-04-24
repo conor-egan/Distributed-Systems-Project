@@ -71,4 +71,13 @@ public class AdminHandler implements AdminHandlerLocal {
     public void replaceAdmin(Administrator admin) {
         em.merge(admin);
     }
+    
+    @Override
+    public List<Administrator> showAllAdmins() {
+        
+        
+       Query query = em.createNamedQuery("Administrator.findAll");
+        
+        return query.getResultList();
+    }
 }

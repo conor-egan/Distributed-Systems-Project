@@ -6,6 +6,10 @@
 package ManagedBeans;
 
 import DB_Entities.Administrator;
+import EJBs.AdminHandler;
+import Interfaces.AdminHandlerLocal;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -20,10 +24,14 @@ public class AdminLogin {
 
     private String name;
     private String password;
+   
     
     @Inject
     SessionHandler sessionHandler;
-
+    
+    @EJB
+    AdminHandlerLocal adminHandler;
+    
     public String getName() {
         return name;
     }
@@ -52,5 +60,35 @@ public class AdminLogin {
             return "login_failed";
         }
     }
+   
+    public String addAdmin(){
+   
+        if (!(sessionHandler.checkAdmin())) {
+            return "admin_login";
+        }
+        else{
+            return "add_admin";
+        }
+   }
+   
+    public String registerAdmin(){       
+            
+            Administrator newadmin = new Administrator();
+       
+            newadmin.setAdminName(name);
+            newadmin.setAdminPassword(password);
+        
+        
+            adminHandler.addAdmin(newadmin);
+            
+            return "admin_list";
+            
+    }
+    
+    public List<Administrator> showAllAdmins(){
+    
+        return adminHandler.showAllAdmins();
+    }
+   
     
 }

@@ -10,20 +10,24 @@ import Interfaces.ProductHandlerLocal;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 
 /**
  *
  * @author Conor
  */
-@Named(value = "addProduct")
+@Named(value = "editProducts")
 @RequestScoped
-public class AddProduct {
+public class EditProducts {
     
     
     @EJB
     ProductHandlerLocal productHandler;
     
-    private int id;
+    @Inject
+    SessionHandler sessionHandler;
+    
+    
     private String name;
     private String author;
     private int price;
@@ -70,30 +74,52 @@ public class AddProduct {
         this.description = description;
     }
     
+    public String authenticateAdd(){
+   
+    if (!(sessionHandler.checkAdmin())) {
+            return "admin_login";
+        }
+    else{
+    return "add_product";
+   }
+   }
     
-
+    public String authenticateDelete(){
+   
+    if (!(sessionHandler.checkAdmin())) {
+            return "admin_login";
+        }
+    else{
+    return "delete_product";
+   }
+   }
+    
+public String deleteProduct(int productId){
+    productHandler.deleteProduct(productId);
+    return "all_products";
+}
     
     
     public String addProduct(){
     
         Product newproduct = new Product();
         
-        id = 33;
         
-        newproduct.setProductId(id);
         
-       
-        newproduct.setProductName(name);
-        newproduct.setProductAuthor(author);
-        newproduct.setProductPrice(price);
-        newproduct.setProductStock(stock);
-        newproduct.setProductDescription(description);
         
-        productHandler.addProduct(newproduct);
+            newproduct.setProductName(name);
+            newproduct.setProductAuthor(author);
+            newproduct.setProductPrice(price);
+            newproduct.setProductStock(stock);
+            newproduct.setProductDescription(description);
         
-        return "all_products";
+            productHandler.addProduct(newproduct);
+        
+            return "all_products";
+        
     }
-    public AddProduct() {
+    
+    public EditProducts() {
     }
     
 }

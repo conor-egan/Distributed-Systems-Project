@@ -75,6 +75,10 @@ public class SessionHandler implements Serializable {
         return user != null;
     }
      
+    public boolean checkAdmin(){
+        return admin != null;
+    }
+     
     public String logout() {
         user = null;
         cartSession.clearCart();

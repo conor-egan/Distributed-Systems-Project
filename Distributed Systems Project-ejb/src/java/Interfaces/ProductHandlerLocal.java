@@ -22,5 +22,7 @@ public interface ProductHandlerLocal {
     public List<Product> showAllProducts();
 
     public void addProduct(Product newproduct);
+
+    public void deleteProduct(int productID);
     
 }

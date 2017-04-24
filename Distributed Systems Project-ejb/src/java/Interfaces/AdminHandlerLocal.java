@@ -21,4 +21,8 @@ public interface AdminHandlerLocal {
     public List<Administrator> searchName(String name);
 
     public void replaceAdmin(Administrator admin);
+
+    public List<Administrator> showAllAdmins();
+
+   
 }

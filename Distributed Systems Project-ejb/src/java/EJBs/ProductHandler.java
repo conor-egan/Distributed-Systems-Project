@@ -10,6 +10,7 @@ import Interfaces.ProductHandlerLocal;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -67,6 +68,20 @@ public class ProductHandler implements ProductHandlerLocal {
     public void persist(Object object) {
         em.persist(object);
     }
+    
+    @Override
+    public void deleteProduct(int productID){
+        em.remove(getSingleProduct(productID));
+    }
    
+    public Product getSingleProduct(int productID){
+        Product product;
+        Query query = em.createNamedQuery("Product.findByProductId")
+                .setParameter("productId", productID);
+       
+            product = (Product) query.getSingleResult();
+        
+        return product;
+    }
     
 }

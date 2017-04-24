@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -37,18 +39,18 @@ public class Product implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "PRODUCT_ID")
     private Integer productId;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 150)
+    @Size(min = 1, max = 200)
     @Column(name = "PRODUCT_NAME")
     private String productName;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 150)
+    @Size(min = 1, max = 200)
     @Column(name = "PRODUCT_AUTHOR")
     private String productAuthor;
     @Basic(optional = false)
@@ -59,10 +61,10 @@ public class Product implements Serializable {
     @NotNull
     @Column(name = "PRODUCT_STOCK")
     private int productStock;
-    @Size(max = 200)
+    @Size(max = 500)
     @Column(name = "PRODUCT_IMAGE")
     private String productImage;
-    @Size(max = 200)
+    @Size(max = 500)
     @Column(name = "PRODUCT_DESCRIPTION")
     private String productDescription;
 
