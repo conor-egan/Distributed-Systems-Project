@@ -17,12 +17,12 @@
         </h:form>
         <br></br>
         <h:form>
-            <h:inputText id="search" value="#{displayProducts.productId}"></h:inputText>
+            <h:inputText id="search2" value="#{displayProducts.productId}"></h:inputText>
             <h:commandButton value="Search by Product ID" action="id_search_results">
             </h:commandButton>
         </h:form>
         <br></br>
-        <h:dataTable value="#{displayProducts.showAllProducts()}" var="product" border="1" cellpadding="10">
+        <h:dataTable value="#{displayProducts.showAllProducts()}" var="product" border="5" cellpadding="10">
             <h:column>
                 <f:facet name="header">Product ID</f:facet>
                 <h:outputText value="#{product.productId}" escape="true"/>

@@ -6,6 +6,7 @@
 package EJBs;
 
 import DB_Entities.Product;
+import Exceptions.ProductNotFoundException;
 import Interfaces.ProductHandlerLocal;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -70,18 +71,66 @@ public class ProductHandler implements ProductHandlerLocal {
     }
     
     @Override
-    public void deleteProduct(int productID){
+    public void deleteProduct(int productID) throws ProductNotFoundException{
         em.remove(getSingleProduct(productID));
     }
    
-    public Product getSingleProduct(int productID){
+    /**
+     *
+     * @param productID
+     * @return
+     * @throws ProductNotFoundException
+     */
+    @Override
+    public Product getSingleProduct(int productID) throws ProductNotFoundException {
         Product product;
         Query query = em.createNamedQuery("Product.findByProductId")
                 .setParameter("productId", productID);
        
+        try{
             product = (Product) query.getSingleResult();
+        }catch (NoResultException nre) {
+            /*
+             * if product is not found throw exception
+             */
+            product = null;
+            throw new ProductNotFoundException("Product ID " + productID
+                    + " not found.", nre);
+        }
         
         return product;
+    }
+    
+                   
+    @Override
+    public void updateQuantity(int productId, int quantity){
+        
+        ProductNotFoundException productNotFoundEx = null;
+        Product product = null;
+        try{
+            product = getSingleProduct(productId);
+        }catch(ProductNotFoundException pnf){
+                    productNotFoundEx = pnf;
+        }
+        
+        product.setProductStock(quantity);
+    
+    
+    }
+   
+    
+    @Override
+    public void removeStock(int productId, int quantity){
+        ProductNotFoundException productNotFoundEx = null;
+        Product product = null;
+        try{
+            product = getSingleProduct(productId);
+        }catch(ProductNotFoundException pnf){
+                    productNotFoundEx = pnf;
+        }
+        
+        product.removeStock(quantity);
+        
     }
     
 }

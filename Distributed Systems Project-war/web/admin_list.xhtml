@@ -10,7 +10,7 @@
     <h:body>
         <ui:include src="/navbar.xhtml" /><br></br>
         <h1>Admin List</h1>
-       <h:dataTable value="#{adminLogin.showAllAdmins()}" var="adminlist" border="1" cellpadding="10">
+       <h:dataTable value="#{adminLogin.showAllAdmins()}" var="adminlist" border="5" cellpadding="10">
             <h:column>
                 <f:facet name="header">Admin ID</f:facet>
                 <h:outputText value="#{adminlist.adminId}" escape="true"/>

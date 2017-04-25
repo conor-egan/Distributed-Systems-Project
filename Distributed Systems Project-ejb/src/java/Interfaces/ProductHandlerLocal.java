@@ -6,6 +6,7 @@
 package Interfaces;
 
 import DB_Entities.Product;
+import Exceptions.ProductNotFoundException;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -23,6 +24,16 @@ public interface ProductHandlerLocal {
 
     public void addProduct(Product newproduct);
 
-    public void deleteProduct(int productID);
+    public void deleteProduct(int productID) throws ProductNotFoundException;
+
+    public void persist(Object object);
+
+    public Product getSingleProduct(int productID) throws ProductNotFoundException ;
+
+
+
+    public void removeStock(int productId, int quantity);
+
+    public void updateQuantity(int productId, int quantity);
     
 }

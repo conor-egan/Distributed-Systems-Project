@@ -6,6 +6,7 @@
 package ManagedBeans;
 
 import DB_Entities.Product;
+import Exceptions.ProductNotFoundException;
 import Interfaces.ProductHandlerLocal;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -94,8 +95,33 @@ public class EditProducts {
    }
    }
     
+    public String authenticateQuantityChange(){
+   
+    if (!(sessionHandler.checkAdmin())) {
+            return "admin_login";
+        }
+    else{
+    return "change_quantity";
+   }
+   }
+    
+    public String updateQuantity(int productId){
+    
+        productHandler.updateQuantity(productId, stock);
+        
+        return "all_products";
+    
+    }
+    
 public String deleteProduct(int productId){
-    productHandler.deleteProduct(productId);
+    ProductNotFoundException productNotFoundEx = null;
+    try{
+        productHandler.deleteProduct(productId);
+        
+    }catch(ProductNotFoundException pnf){
+                    productNotFoundEx = pnf;
+                }
+    
     return "all_products";
 }
     

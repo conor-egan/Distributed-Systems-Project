@@ -6,11 +6,15 @@
 package ManagedBeans;
 
 
+
 import DB_Entities.Product;
+import Exceptions.ProductNotFoundException;
+import Interfaces.ProductHandlerLocal;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -26,6 +30,10 @@ public class CartSession implements Serializable {
     @Inject
     SessionHandler sessionHandler;
     
+    @EJB
+    ProductHandlerLocal productHandler;
+    
+       
     private int quantity;
     private List<Cart> items = new ArrayList<>();
 
@@ -86,5 +94,31 @@ public class CartSession implements Serializable {
 
     public void clearCart() {
         items.clear();
+    }
+    
+    public String checkout(){
+        /* Get all items in the cart */
+        List<Cart> CheckoutItems = getItems();
+        List<Cart> BoughtItems = new ArrayList();
+        
+        
+        
+        System.out.println("Checkout processing");
+
+        for (Cart item : CheckoutItems) {
+                
+                    int prodID = item.getProductId();
+                    int prodQuantity = item.getQuantity();
+                    productHandler.removeStock(prodID, prodQuantity);
+                    BoughtItems.add(item);
+                }
+               
+            /* add item to cart*/
+            
+          
+        
+        clearCart();
+        return "checkout_success";
+      
     }
 }

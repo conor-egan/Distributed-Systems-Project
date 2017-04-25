@@ -164,4 +164,10 @@ public class Product implements Serializable {
         return "DB_Entities.Product[ productId=" + productId + " ]";
     }
     
+    public void removeStock(int quantity) {
+        
+            productStock -= quantity;
+        }
+   
+    
 }
