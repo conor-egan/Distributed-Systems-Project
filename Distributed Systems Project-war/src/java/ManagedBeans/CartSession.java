@@ -18,6 +18,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.jms.JMSException;
 
 /**
  *
@@ -32,6 +33,9 @@ public class CartSession implements Serializable {
     
     @EJB
     ProductHandlerLocal productHandler;
+    
+    @Inject
+    MessageClient messageClient;
     
        
     private int quantity;
@@ -101,8 +105,6 @@ public class CartSession implements Serializable {
         List<Cart> CheckoutItems = getItems();
         List<Cart> BoughtItems = new ArrayList();
         
-        
-        
         System.out.println("Checkout processing");
 
         for (Cart item : CheckoutItems) {
@@ -114,10 +116,14 @@ public class CartSession implements Serializable {
                 }
                
             /* add item to cart*/
-            
-          
-        
+           
         clearCart();
+        String message = "Order Completed.";
+        try{
+        messageClient.logMessage(message, sessionHandler.getUser().getCustomerName());
+        }catch (JMSException ex) {
+               
+            }
         return "checkout_success";
       
     }
