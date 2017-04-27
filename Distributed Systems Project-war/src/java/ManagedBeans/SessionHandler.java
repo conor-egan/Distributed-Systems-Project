@@ -15,7 +15,6 @@ import java.io.Serializable;
 import javax.ejb.*;
 import javax.inject.Inject;
 
-
 /**
  *
  * @author Conor
@@ -26,26 +25,24 @@ public class SessionHandler implements Serializable {
 
     @EJB
     UserHandlerLocal userHandler;
-    
+
     @EJB
     AdminHandlerLocal adminHandler;
-    
+
     @Inject
     CartSession cartSession;
-    
+
     private Customer user;
     private Administrator admin;
 
     public Customer getUser() {
         return user;
     }
-    
-    public Administrator getAdmin(){
+
+    public Administrator getAdmin() {
         return admin;
     }
-    
-   
-    
+
     /**
      * Log into the application
      *
@@ -61,7 +58,7 @@ public class SessionHandler implements Serializable {
             return null;
         }
     }
-    
+
     public Administrator adminLogin(String username, String password) {
         admin = adminHandler.login(username, password);
         if (admin != null) {
@@ -70,22 +67,29 @@ public class SessionHandler implements Serializable {
             return null;
         }
     }
-    
-     public boolean checkLogin() {
+
+    /**
+     * Check to see if the current session user is logged in as a customer.
+     * @return user
+     */
+    public boolean checkLogin() {
         return user != null;
     }
-     
-    public boolean checkAdmin(){
+    
+    /**
+     * Check to see if the current session user is logged in as an admin
+     * @return admin
+     */
+    public boolean checkAdmin() {
         return admin != null;
     }
-     
+
     public String logout() {
         user = null;
         cartSession.clearCart();
         admin = null;
         return "login";
-        
+
     }
-    
-   
+
 }

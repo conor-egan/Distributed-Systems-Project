@@ -106,43 +106,56 @@ public class EditProducts {
    }
     
     public String updateQuantity(int productId){
-    
-        productHandler.updateQuantity(productId, stock);
         
-        return "all_products";
-    
+        if (!(sessionHandler.checkAdmin())) {
+            return "admin_login";
+        }
+        else{
+            productHandler.updateQuantity(productId, stock);
+            return "all_products";
+        }
     }
     
-public String deleteProduct(int productId){
-    ProductNotFoundException productNotFoundEx = null;
-    try{
-        productHandler.deleteProduct(productId);
-        
-    }catch(ProductNotFoundException pnf){
-                    productNotFoundEx = pnf;
-                }
+    /**
+     * Send a request to ProductHandler to delete a product entry from the Product table
+     * @param productId
+     * @return "all_products"
+     */
+    public String deleteProduct(int productId){
     
-    return "all_products";
+        if (!(sessionHandler.checkAdmin())) {
+                return "admin_login";
+            }
+        else{
+            ProductNotFoundException productNotFoundEx = null;
+            try{
+                productHandler.deleteProduct(productId);
+            }catch(ProductNotFoundException pnf){
+                    productNotFoundEx = pnf;
+            }
+            return "all_products";
+        }
 }
     
     
     public String addProduct(){
     
+        if (!(sessionHandler.checkAdmin())) {
+            return "admin_login";
+        }
+        else{
+        
         Product newproduct = new Product();
+        newproduct.setProductName(name);
+        newproduct.setProductAuthor(author);
+        newproduct.setProductPrice(price);
+        newproduct.setProductStock(stock);
+        newproduct.setProductDescription(description);
         
+        productHandler.addProduct(newproduct);
         
-        
-        
-            newproduct.setProductName(name);
-            newproduct.setProductAuthor(author);
-            newproduct.setProductPrice(price);
-            newproduct.setProductStock(stock);
-            newproduct.setProductDescription(description);
-        
-            productHandler.addProduct(newproduct);
-        
-            return "all_products";
-        
+        return "all_products";
+        }
     }
     
     public EditProducts() {

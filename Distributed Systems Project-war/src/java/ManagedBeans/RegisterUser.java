@@ -75,7 +75,10 @@ public class RegisterUser {
     }
     
     public String addUser(){
-    
+        
+        if(userHandler.searchName(name) != null){
+            return "name_in_use";
+        }
         
         Customer newuser = new Customer();
        

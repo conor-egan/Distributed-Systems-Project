@@ -1,12 +1,16 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* Authors
+*
+* Conor Egan 13138782
+* Mark Dempsey 12062863
+* Niall Phillips 13153382 
+* Luke Robinson 13132822
+* Simon Griffin 13125648
+*
+*/
 package ManagedBeans;
 
 import DB_Entities.Administrator;
-import EJBs.AdminHandler;
 import Interfaces.AdminHandlerLocal;
 import java.util.List;
 import javax.ejb.EJB;
@@ -16,7 +20,7 @@ import javax.inject.Inject;
 
 /**
  *
- * @author Conor
+ * Managed bean used to handle admin login and registration requests
  */
 @Named(value = "adminLogin")
 @RequestScoped
@@ -32,14 +36,26 @@ public class AdminLogin {
     @EJB
     AdminHandlerLocal adminHandler;
     
+    /**
+     *
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @return password
+     */
     public String getPassword() {
         return password;
     }
@@ -52,7 +68,11 @@ public class AdminLogin {
         this.password = password;
     }
     
-   public String login() {
+    /**
+     * Validate the name and password entered by the admin user in the login fields. 
+     * @return "admin_home"
+     */
+    public String login() {
        
         Administrator admin = sessionHandler.adminLogin(name, password);
         if (admin != null) {
@@ -62,6 +82,10 @@ public class AdminLogin {
         }
     }
    
+    /**
+     * Check to see if user is a valid admin. Allow access to add_admin page if user is valid.
+     * @return "add_admin"
+     */
     public String addAdmin(){
    
         if (!(sessionHandler.checkAdmin())) {
@@ -72,24 +96,32 @@ public class AdminLogin {
         }
    }
    
+    /**
+     * Create a new Administrator entry on the database
+     * @return "admin_list"
+     */
     public String registerAdmin(){       
             
-            Administrator newadmin = new Administrator();
+        Administrator newadmin = new Administrator();
        
-            newadmin.setAdminName(name);
-            newadmin.setAdminPassword(password);
+        newadmin.setAdminName(name);
+        newadmin.setAdminPassword(password);
+        /* Check to see if admin name already exists */
+        if(adminHandler.searchName(name) != null){
+            return "name_in_use";
+        }
         
-        
-            adminHandler.addAdmin(newadmin);
-            
-            return "admin_list";
-            
+        adminHandler.addAdmin(newadmin);
+        return "admin_list";
     }
     
+    /**
+     * Return a list of all registered administrators
+     * @return List<Administrator>
+     */
     public List<Administrator> showAllAdmins(){
     
         return adminHandler.showAllAdmins();
     }
-   
     
 }

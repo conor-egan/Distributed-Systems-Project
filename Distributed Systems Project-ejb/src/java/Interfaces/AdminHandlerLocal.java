@@ -22,8 +22,9 @@ import javax.ejb.Local;
 @Local
 public interface AdminHandlerLocal {
     /**
-     * Handles admin login requests. Searches Administrator entity for username and password and returns the associated
-     * Administrator entry.
+     * Handles admin login requests. Searches Administrator entity for username, returns the associated
+     * Administrator entry. Checks the entered password against the stored value in the database. Returns
+     * null for invalid login details.
      * @param username
      * @param password
      * @return admin

@@ -22,7 +22,7 @@ import javax.persistence.Query;
 /**
  * Handles requests to edit or search the Administrator database table. Provides a means to interact with the 
  * Administrator entity.
- * @author Conor
+ * 
  */
 @Stateless
 public class AdminHandler implements AdminHandlerLocal {
@@ -32,8 +32,9 @@ public class AdminHandler implements AdminHandlerLocal {
     private EntityManager em;
     
     /**
-     * Handles admin login requests. Searches Administrator entity for username and password and returns the associated
-     * Administrator entry.
+     * Handles admin login requests. Searches Administrator entity for username, returns the associated
+     * Administrator entry. Checks the entered password against the stored value in the database. Returns
+     * null for invalid login details.
      * @param username
      * @param password
      * @return admin
@@ -46,16 +47,13 @@ public class AdminHandler implements AdminHandlerLocal {
         try {
             admin = (Administrator) query.getSingleResult();
         } catch (NoResultException nre) {
-            /* If user is not found return null */
             admin = null;
         }
         if (admin == null) {
             return null;
         } else if (admin.getAdminPassword().equals(password)) {
-            /* Valid login, return user */
             return admin;
         } else {
-            /* Invalid login, return null */
             return null;
         }
     }
