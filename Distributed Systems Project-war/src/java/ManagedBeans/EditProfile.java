@@ -1,8 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* Authors
+*
+* Conor Egan 13138782
+* Mark Dempsey 12062863
+* Niall Phillips 13153382 
+* Luke Robinson 13132822
+* Simon Griffin 13125648
+*
+*/
 package ManagedBeans;
 
 import DB_Entities.Customer;
@@ -16,7 +21,7 @@ import javax.inject.Named;
 
 /**
  *
- * @author Conor
+ * Session bean to handle requests to edit a Customer entry on the Customer table
  */
 @Named(value = "editProfile")
 @SessionScoped
@@ -30,17 +35,27 @@ public class EditProfile implements Serializable {
 
     private Customer user;
 
+    /**
+     *
+     * @return user
+     */
     public Customer getUser() {
         return user;
     }
 
+    /**
+     *
+     * @param user
+     */
     public void setUser(Customer user) {
         this.user = user;
     }
 
- 
-
-   
+    /**
+     * Restrict access to the update profile page to logged in users only
+     * @param user
+     * @return
+     */
     public String editUser(Customer user) {
         /* Only allow users to edit their own profile */
         if (sessionHandler.getUser().equals(user)) {
@@ -50,6 +65,10 @@ public class EditProfile implements Serializable {
         return "login_failed";
     }
 
+    /**
+     * Request UserHandler EJB to update an existing Customer entry
+     * @return
+     */
     public String updateUser() {
         if (sessionHandler.getUser().equals(user)) {
             this.user = user;

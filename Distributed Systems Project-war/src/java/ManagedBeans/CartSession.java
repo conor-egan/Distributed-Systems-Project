@@ -29,7 +29,8 @@ import javax.jms.JMSException;
 
 /**
  *
- * @author Conor
+ * Session bean used to manage the contents of a users cart across a HTTP session. Handles items added/deleted from cart,
+ * checkout functionality and updates purchase orders.
  */
 @SessionScoped
 @Named(value = "cartSession")
@@ -53,18 +54,31 @@ public class CartSession implements Serializable {
     
     private List<Cart> items = new ArrayList<>();
 
+    /**
+     *
+     * @return quantity
+     */ 
     public int getQuantity() {
         return quantity;
     }
 
+    /**
+     *
+     * @param quantity
+     */
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
     
-    
-    
+    /**
+     * Add item to cart. Products in cart are handled as a List. If product ID already exists in list, then quantity 
+     * of that product increased. If product ID does not already exist in list, new product added to list.
+     * @param product
+     * @return "cart_page"
+     */
     public String addToCart(Product product){
-            
+        
+        /*Check that Customer is logged in. Redirect to login page if not*/
         if (!(sessionHandler.checkLogin())) {
             return "login";
         }
@@ -84,9 +98,15 @@ public class CartSession implements Serializable {
        return "cart_page";
     }
 
+    /**
+     * Remove product from cart
+     * @param productId
+     * @return
+     */
     public String clearItem(int productId){
     
-    if (!(sessionHandler.checkLogin())) {
+        /*Check that Customer is logged in. Redirect to login page if not*/
+        if (!(sessionHandler.checkLogin())) {
             return "login";
         }
             
@@ -100,18 +120,35 @@ public class CartSession implements Serializable {
         return "cart_page";
     }
     
+    /**
+     * Return all products in cart
+     * @return items
+     */
     public List<Cart> getItems() {
         return items;
     }
 
+    /**
+     *
+     * @param items
+     */
     public void setItems(List<Cart> items) {
         this.items = items;
     }
 
+    /**
+     * Clear all products from cart
+     */
     public void clearCart() {
         items.clear();
     }
     
+    /**
+     * Check out cart contents. All items are removed from cart, an entry is added to the database log,
+     * and the purchase orders database table is updated
+     * 
+     * @return "checkout_success"
+     */
     public String checkout(){
         /* Get all items in the cart */
         List<Cart> CheckoutItems = getItems();
@@ -141,6 +178,9 @@ public class CartSession implements Serializable {
         
     }
     
+    /**
+     * Add a new purchase order entry to the database
+     */
     public void addPurchaseOrder(){
     
         Date date = new Date();

@@ -1,8 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* Authors
+*
+* Conor Egan 13138782
+* Mark Dempsey 12062863
+* Niall Phillips 13153382 
+* Luke Robinson 13132822
+* Simon Griffin 13125648
+*
+*/
 package ManagedBeans;
 
 import DB_Entities.Customer;
@@ -15,7 +20,7 @@ import javax.inject.Inject;
 
 /**
  *
- * @author Conor
+ * Handle requests to create a new Customer entry on the database
  */
 @Named(value = "registerUser")
 @RequestScoped
@@ -34,48 +39,93 @@ public class RegisterUser {
     private String address;
     private String description;
 
+    /**
+     *
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @return password
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     *
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     *
+     * @return email
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     *
+     * @param email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     *
+     * @return address
+     */
     public String getAddress() {
         return address;
     }
 
+    /**
+     *
+     * @param address
+     */
     public void setAddress(String address) {
         this.address = address;
     }
 
+    /**
+     *
+     * @return description
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     *
+     * @param description
+     */
     public void setDescription(String description) {
         this.description = description;
     }
     
+    /**
+     * Create a new Customer object. Send request to UserHandler to store new object as entry on Customer table
+     * @return "customer_home"
+     */
     public String addUser(){
         
+        /* Ensure that username is not already in use */
         if(userHandler.searchName(name) != null){
             return "name_in_use";
         }

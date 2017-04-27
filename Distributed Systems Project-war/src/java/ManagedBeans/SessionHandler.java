@@ -1,8 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* Authors
+*
+* Conor Egan 13138782
+* Mark Dempsey 12062863
+* Niall Phillips 13153382 
+* Luke Robinson 13132822
+* Simon Griffin 13125648
+*
+*/
 package ManagedBeans;
 
 import DB_Entities.Administrator;
@@ -17,7 +22,7 @@ import javax.inject.Inject;
 
 /**
  *
- * @author Conor
+ * Session bean to persist a users login details across an HTTP session
  */
 @Named(value = "sessionHandler")
 @SessionScoped
@@ -35,10 +40,18 @@ public class SessionHandler implements Serializable {
     private Customer user;
     private Administrator admin;
 
+    /**
+     *
+     * @return user
+     */
     public Customer getUser() {
         return user;
     }
 
+    /**
+     *
+     * @return
+     */
     public Administrator getAdmin() {
         return admin;
     }
@@ -59,6 +72,12 @@ public class SessionHandler implements Serializable {
         }
     }
 
+    /**
+     * Log in as administrator
+     * @param username
+     * @param password
+     * @return
+     */
     public Administrator adminLogin(String username, String password) {
         admin = adminHandler.login(username, password);
         if (admin != null) {
@@ -84,6 +103,10 @@ public class SessionHandler implements Serializable {
         return admin != null;
     }
 
+    /**
+     * Log out of application
+     * @return
+     */
     public String logout() {
         user = null;
         cartSession.clearCart();
