@@ -5,6 +5,7 @@
  */
 package DB_Entities;
 
+import Exceptions.ProductOutOfStock;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -164,10 +165,14 @@ public class Product implements Serializable {
         return "DB_Entities.Product[ productId=" + productId + " ]";
     }
     
-    public void removeStock(int quantity) {
-        
+    public void removeStock(int quantity) throws ProductOutOfStock{
+         
+        if (productStock < quantity) {
+            throw new ProductOutOfStock("Product Out of Stock.");
+        } else {
             productStock -= quantity;
         }
+    }
    
     
 }

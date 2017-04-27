@@ -11,5 +11,6 @@
     <property name="DatabaseName" value="Shop_Backend"/>
     <property name="User" value="conor"/>
     <property name="Password" value="password"/>
+    em.getEntityManagerFactory().getCache().evictAll;
   </jdbc-connection-pool>
 </resources>

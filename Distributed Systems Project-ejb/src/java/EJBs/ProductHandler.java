@@ -7,6 +7,7 @@ package EJBs;
 
 import DB_Entities.Product;
 import Exceptions.ProductNotFoundException;
+import Exceptions.ProductOutOfStock;
 import Interfaces.ProductHandlerLocal;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -122,6 +123,7 @@ public class ProductHandler implements ProductHandlerLocal {
     @Override
     public void removeStock(int productId, int quantity){
         ProductNotFoundException productNotFoundEx = null;
+        ProductOutOfStock productOutOfStock = null;
         Product product = null;
         try{
             product = getSingleProduct(productId);
@@ -129,7 +131,12 @@ public class ProductHandler implements ProductHandlerLocal {
                     productNotFoundEx = pnf;
         }
         
-        product.removeStock(quantity);
+        try {
+            product.removeStock(quantity);
+        } catch (ProductOutOfStock poos) {
+           
+            productOutOfStock = poos;
+        }
         
     }
     

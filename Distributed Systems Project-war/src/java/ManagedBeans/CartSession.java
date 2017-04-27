@@ -8,10 +8,13 @@ package ManagedBeans;
 
 
 import DB_Entities.Product;
+import DB_Entities.Purchases;
 import Exceptions.ProductNotFoundException;
 import Interfaces.ProductHandlerLocal;
+import Interfaces.PurchaseHandlerLocal;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.ejb.EJB;
@@ -37,8 +40,13 @@ public class CartSession implements Serializable {
     @Inject
     MessageClient messageClient;
     
+    @EJB
+    PurchaseHandlerLocal purchaseHandler;
+    
        
     private int quantity;
+    private int totalPrice;
+    
     private List<Cart> items = new ArrayList<>();
 
     public int getQuantity() {
@@ -104,15 +112,15 @@ public class CartSession implements Serializable {
         /* Get all items in the cart */
         List<Cart> CheckoutItems = getItems();
         List<Cart> BoughtItems = new ArrayList();
+        totalPrice = 0;        
         
-        System.out.println("Checkout processing");
-
         for (Cart item : CheckoutItems) {
                 
                     int prodID = item.getProductId();
                     int prodQuantity = item.getQuantity();
                     productHandler.removeStock(prodID, prodQuantity);
                     BoughtItems.add(item);
+                    totalPrice = totalPrice + (item.getPrice()*item.getQuantity());
                 }
                
             /* add item to cart*/
@@ -124,7 +132,21 @@ public class CartSession implements Serializable {
         }catch (JMSException ex) {
                
             }
+        addPurchaseOrder();
         return "checkout_success";
-      
+        
+    }
+    
+    public void addPurchaseOrder(){
+    
+        Date date = new Date();
+        Purchases purchase = new Purchases();
+        
+        purchase.setTime(date);
+        purchase.setCustomerName(sessionHandler.getUser().getCustomerName());
+        purchase.setPurchaseAmount(totalPrice);
+        
+        purchaseHandler.addPurchaseOrder(purchase);
+        
     }
 }
