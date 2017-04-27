@@ -1,8 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* Authors
+*
+* Conor Egan 13138782
+* Mark Dempsey 12062863
+* Niall Phillips 13153382 
+* Luke Robinson 13132822
+* Simon Griffin 13125648
+*
+*/
+
 package EJBs;
 
 import DB_Entities.Log;
@@ -22,9 +28,13 @@ import javax.persistence.PersistenceContext;
 import javax.validation.ConstraintViolationException;
 
 /**
- *
- * @author Conor
- */
+* Logging bean to accomplish the following:
+* Every time a customer confirms an order or cancels an order an entry is added to the database log.
+* Every time an administrator adds/removes a product an entry is added to the log.
+* 
+* Bean logs to database table LOG.
+*
+*/
 @MessageDriven(mappedName = "jms/MessageQueue", activationConfig
         = {
             @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge"),
@@ -41,13 +51,15 @@ public class LogHandler implements MessageListener {
     @PersistenceContext(unitName = "Distributed_Systems_Project-ejbPU")
     private EntityManager em;
     
-   @Override
+    /**
+     * Add a log message to the LOG database table
+     * @param message
+     */
+    @Override
     public void onMessage(Message message) {
         ObjectMessage msg = null;
-        System.out.println("Message received by logManager");
-
         try {
-            /* Update received message to log*/
+            
             if (message instanceof ObjectMessage) {
                 msg = (ObjectMessage) message;
                 Log log = (Log) msg.getObject();

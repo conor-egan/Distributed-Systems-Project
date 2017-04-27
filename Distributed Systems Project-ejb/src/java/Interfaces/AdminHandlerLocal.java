@@ -1,28 +1,59 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* Authors
+*
+* Conor Egan 13138782
+* Mark Dempsey 12062863
+* Niall Phillips 13153382 
+* Luke Robinson 13132822
+* Simon Griffin 13125648
+*
+*/
+
 package Interfaces;
 
 import DB_Entities.Administrator;
 import java.util.List;
 import javax.ejb.Local;
 
-/**
- *
- * @author Conor
- */
+/*
+* Interface for the AdminHandler EJB.
+*/
+
 @Local
 public interface AdminHandlerLocal {
-    
+    /**
+     * Handles admin login requests. Searches Administrator entity for username and password and returns the associated
+     * Administrator entry.
+     * @param username
+     * @param password
+     * @return admin
+     */
     public Administrator login(String username, String password);
-    public void addAdmin(Administrator admin);
+    
+    /**
+     * Add a new entry to the Administrator table
+     * @param newadmin
+     */
+    public void addAdmin(Administrator newadmin);
+    
+    /**
+     * Build query to search Administrator table for administrator name. Return data list associated with the 
+     * found table row.
+     * @param name
+     * @return List<Administrator>
+     */
     public List<Administrator> searchName(String name);
-
-    public void replaceAdmin(Administrator admin);
-
+    
+    /**
+     * Build a query to return a list of all Administrator entries on the database.
+     * @return List<Administrator>
+     */
     public List<Administrator> showAllAdmins();
-
-   
+    
+    /**
+     *
+     * @param object
+     */
+    public void persist(Object object);
+  
 }

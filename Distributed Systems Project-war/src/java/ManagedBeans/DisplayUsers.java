@@ -25,7 +25,16 @@ public class DisplayUsers implements Serializable {
     UserHandlerLocal userHandler;
     
     private String name;
+    private int id;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getName() {
         return name;
     }
@@ -37,7 +46,12 @@ public class DisplayUsers implements Serializable {
      public List<Customer> searchName() {
       
         return userHandler.searchName(name);
-    }    
+    }  
+     
+    public List<Customer> searchId() {
+      
+        return userHandler.searchId(id);
+    }  
     public DisplayUsers() {
     }
     

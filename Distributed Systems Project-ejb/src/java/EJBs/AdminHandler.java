@@ -1,8 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* Authors
+*
+* Conor Egan 13138782
+* Mark Dempsey 12062863
+* Niall Phillips 13153382 
+* Luke Robinson 13132822
+* Simon Griffin 13125648
+*
+*/
 package EJBs;
 
 import DB_Entities.Administrator;
@@ -15,7 +20,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
- *
+ * Handles requests to edit or search the Administrator database table. Provides a means to interact with the 
+ * Administrator entity.
  * @author Conor
  */
 @Stateless
@@ -25,7 +31,14 @@ public class AdminHandler implements AdminHandlerLocal {
     @PersistenceContext(unitName = "Distributed_Systems_Project-ejbPU")
     private EntityManager em;
     
-   @Override
+    /**
+     * Handles admin login requests. Searches Administrator entity for username and password and returns the associated
+     * Administrator entry.
+     * @param username
+     * @param password
+     * @return admin
+     */
+    @Override
     public Administrator login(String username, String password) {
         Administrator admin;
         Query query = em.createNamedQuery("Administrator.findByAdminName")
@@ -47,6 +60,10 @@ public class AdminHandler implements AdminHandlerLocal {
         }
     }
     
+    /**
+     * Add a new entry to the Administrator table
+     * @param newadmin
+     */
     @Override
     public void addAdmin(Administrator newadmin){
            
@@ -54,24 +71,34 @@ public class AdminHandler implements AdminHandlerLocal {
     
     }
 
+    /**
+     *
+     * @param object
+     */
+    @Override
     public void persist(Object object) {
         em.persist(object);
     }
     
-     @Override
+    /**
+     * Build query to search Administrator table for administrator name. Return data list associated with the 
+     * found table row.
+     * @param name
+     * @return List<Administrator>
+     */
+    @Override
     public List<Administrator> searchName(String name) {
         
-        Query query = em.createNamedQuery("Customer.findByAdminName")
+        Query query = em.createNamedQuery("Administrator.findByAdminName")
                 .setParameter("adminName", name);
         
         return query.getResultList();
     }
     
-    @Override
-    public void replaceAdmin(Administrator admin) {
-        em.merge(admin);
-    }
-    
+    /**
+     * Build a query to return a list of all Administrator entries on the database.
+     * @return List<Administrator>
+     */
     @Override
     public List<Administrator> showAllAdmins() {
         

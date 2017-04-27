@@ -16,15 +16,22 @@
                 Message:
                 <h:outputText escape="true" style="font-weight:normal;" 
                               value="#{sessionHandler.user.customerDescription}" />
-            <h:form>
+                
+                <h:form>
                 <h:commandButton value="Edit Profile" 
                                  action="#{editProfile.editUser(sessionHandler.user)}"/>
-            </h:form>
+                </h:form>
         
                 <br></br>
         <h:form>
-            <h:inputText id="search" value="#{displayUsers.name}"></h:inputText>
+            <h:inputText id="search_name" value="#{displayUsers.name}"></h:inputText>
             <h:commandButton value="Search for Username" action="user_search_results">
+            </h:commandButton>
+        </h:form>
+                <br></br>
+        <h:form>
+            <h:inputText id="search_id" value="#{displayUsers.id}"></h:inputText>
+            <h:commandButton value="Search for User ID" action="user_ID_search_results">
             </h:commandButton>
         </h:form>
         

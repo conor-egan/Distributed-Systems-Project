@@ -1,8 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* Authors
+*
+* Conor Egan 13138782
+* Mark Dempsey 12062863
+* Niall Phillips 13153382 
+* Luke Robinson 13132822
+* Simon Griffin 13125648
+*
+*/
 package EJBs;
 
 import DB_Entities.Product;
@@ -18,7 +23,8 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Conor
+ * Handler bean to allow interaction with the Product entity. Requests to add/delete product entries 
+ * or update existing entries are handled here.
  */
 @Stateless
 public class ProductHandler implements ProductHandlerLocal {
@@ -27,9 +33,11 @@ public class ProductHandler implements ProductHandlerLocal {
     private EntityManager em;
 
     /**
-     *
+     * Build a query to search Product table for a product name. Return data list associated with the 
+     * entry it finds
+     * 
      * @param name
-     * @return
+     * @return List<Product>
      */
     @Override
     public List<Product> searchName(String name) {
@@ -41,6 +49,13 @@ public class ProductHandler implements ProductHandlerLocal {
         return query.getResultList();
     }
     
+    /**
+     * Build a query to search Product table for a product ID. Return data list associated with the 
+     * entry it finds
+     * 
+     * @param productId
+     * @return List<Product>
+     */
     @Override
     public List<Product> searchId(int productId) {
         
@@ -51,6 +66,11 @@ public class ProductHandler implements ProductHandlerLocal {
         return query.getResultList();
     }
     
+    /**
+     * Build a query to return all entries on the Product table.
+     * 
+     * @return List<Product>
+     */
     @Override
     public List<Product> showAllProducts() {
         
@@ -60,6 +80,10 @@ public class ProductHandler implements ProductHandlerLocal {
         return query.getResultList();
     }
     
+    /**
+     * Add a new product entry to the Product table
+     * @param newproduct
+     */
     @Override
     public void addProduct(Product newproduct){
            
@@ -67,19 +91,31 @@ public class ProductHandler implements ProductHandlerLocal {
     
     }
     
+    /**
+     *
+     * @param object
+     */
+    @Override
     public void persist(Object object) {
         em.persist(object);
     }
     
+    /**
+     * Delete a product entry for the Product table.
+     * @param productID
+     * @throws ProductNotFoundException
+     */
     @Override
     public void deleteProduct(int productID) throws ProductNotFoundException{
         em.remove(getSingleProduct(productID));
     }
    
     /**
-     *
+     * Build a query to return the data associated with a single product entry on the database. Search for specified 
+     * product using product ID.
+     * 
      * @param productID
-     * @return
+     * @return product
      * @throws ProductNotFoundException
      */
     @Override

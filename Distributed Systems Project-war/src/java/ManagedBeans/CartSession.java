@@ -9,7 +9,6 @@ package ManagedBeans;
 
 import DB_Entities.Product;
 import DB_Entities.Purchases;
-import Exceptions.ProductNotFoundException;
 import Interfaces.ProductHandlerLocal;
 import Interfaces.PurchaseHandlerLocal;
 import java.io.Serializable;
@@ -149,4 +148,5 @@ public class CartSession implements Serializable {
         purchaseHandler.addPurchaseOrder(purchase);
         
     }
+     
 }

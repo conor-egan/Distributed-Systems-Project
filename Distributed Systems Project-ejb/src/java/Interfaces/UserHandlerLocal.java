@@ -25,7 +25,7 @@ public interface UserHandlerLocal {
     public Customer login(String username, String password);
     public void addUser(Customer newuser);
     public List<Customer> searchName(String name);
-
     public void replaceUser(Customer user);
+    public List<Customer> searchId(int id);
     
 }

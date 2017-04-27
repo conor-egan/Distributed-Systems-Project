@@ -58,11 +58,20 @@ public class UserHandler implements UserHandlerLocal {
         em.persist(object);
     }
     
-     @Override
+    @Override
     public List<Customer> searchName(String name) {
         
         Query query = em.createNamedQuery("Customer.findByCustomerName")
                 .setParameter("customerName", name);
+        
+        return query.getResultList();
+    }
+    
+    @Override
+    public List<Customer> searchId(int id) {
+        
+        Query query = em.createNamedQuery("Customer.findByCustomerId")
+                .setParameter("customerId", id);
         
         return query.getResultList();
     }
