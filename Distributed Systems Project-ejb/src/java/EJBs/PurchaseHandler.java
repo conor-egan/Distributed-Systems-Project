@@ -1,8 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* Authors
+*
+* Conor Egan 13138782
+* Mark Dempsey 12062863
+* Niall Phillips 13153382 
+* Luke Robinson 13132822
+* Simon Griffin 13125648
+*
+*/
 package EJBs;
 
 import DB_Entities.Purchases;
@@ -13,7 +18,8 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Conor
+ * Handler bean to allow interaction with the Purchases entity. Handles the creation of new purchase orders when users
+ * checkout their cart.
  */
 @Stateless
 public class PurchaseHandler implements PurchaseHandlerLocal {
@@ -21,14 +27,20 @@ public class PurchaseHandler implements PurchaseHandlerLocal {
    @PersistenceContext(unitName = "Distributed_Systems_Project-ejbPU")
     private EntityManager em;
    
-   @Override
+    /**
+     * Add a new purchase order entry to the Purchases table.
+     * @param purchase
+     */
+    @Override
     public void addPurchaseOrder(Purchases purchase){
-           
         em.persist(purchase);
-    
     }
 
-   @Override
+    /**
+     *
+     * @param object
+     */
+    @Override
     public void persist(Object object) {
         em.persist(object);
     }

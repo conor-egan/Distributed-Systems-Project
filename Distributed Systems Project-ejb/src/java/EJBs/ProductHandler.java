@@ -138,7 +138,13 @@ public class ProductHandler implements ProductHandlerLocal {
         return product;
     }
     
-                   
+    /**
+     * Change the amount of available stock (quantity on hand) for a specified product entry. Search Product 
+     * table using product ID.
+     * 
+     * @param productId
+     * @param quantity
+     */
     @Override
     public void updateQuantity(int productId, int quantity){
         
@@ -151,11 +157,16 @@ public class ProductHandler implements ProductHandlerLocal {
         }
         
         product.setProductStock(quantity);
-    
-    
+ 
     }
    
-    
+    /**
+     * Decrease the amount of available stock (quantity on hand) for a particular product. Search
+     * using produc ID.
+     * 
+     * @param productId
+     * @param quantity
+     */
     @Override
     public void removeStock(int productId, int quantity){
         ProductNotFoundException productNotFoundEx = null;
