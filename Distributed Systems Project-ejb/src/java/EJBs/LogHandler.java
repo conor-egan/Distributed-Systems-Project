@@ -51,6 +51,7 @@ public class LogHandler implements MessageListener {
     @PersistenceContext(unitName = "Distributed_Systems_Project-ejbPU")
     private EntityManager em;
     
+    
     /**
      * Add a log message to the LOG database table
      * @param message
