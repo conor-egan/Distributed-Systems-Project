@@ -125,10 +125,7 @@ public class RegisterUser {
      */
     public String addUser(){
         
-        /* Ensure that username is not already in use */
-        if(userHandler.searchName(name) != null){
-            return "name_in_use";
-        }
+        
         
         Customer newuser = new Customer();
        

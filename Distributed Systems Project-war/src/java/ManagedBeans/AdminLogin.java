@@ -106,11 +106,7 @@ public class AdminLogin {
        
         newadmin.setAdminName(name);
         newadmin.setAdminPassword(password);
-        /* Check to see if admin name already exists */
-        if(adminHandler.searchName(name) != null){
-            return "name_in_use";
-        }
-        
+               
         adminHandler.addAdmin(newadmin);
         return "admin_list";
     }
