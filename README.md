@@ -27,7 +27,7 @@ Name and ID are taken from Customer table, message can be any text – allow at 
 500 characters.
 * View profiles from other users – provide search by name and search by ID.
 * Check out or cancel current order.
-3. Administrators can perform:
+3. Administrators can perform
 * Add new products to the database.
 * Remove products from the database.
 * Increase/decrease the available amount (quantity_on_hand) of any product.
