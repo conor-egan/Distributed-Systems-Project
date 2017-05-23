@@ -16,8 +16,8 @@ two roles: customer and administrator.
 1. Provide two accounts: Customer ‘joe’ with password “ 1D10T? ” (second last is zero) and
 administrator ‘toor’ with password “4uIdo0!” (third is capital i - not one, second last is zero) - feel
 free to add other accounts, but these must exist.
-2. Customers can perform the following:
-  &nbsp;&nbsp;&nbsp;&nbsp;- Browse through all your items.
+2. Customers can perform the following: <br></br>
+  &nbsp;&nbsp;&nbsp;&nbsp;- Browse through all your items. <br></br>
   &nbsp;&nbsp;&nbsp;&nbsp;- Search products by ID number and browse through the search results.
   &nbsp;&nbsp;&nbsp;&nbsp;- Search products by name and browse through the search results.
   &nbsp;&nbsp;&nbsp;&nbsp;- Add displayed items to their shopping cart.
